@@ -1,4 +1,9 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpCode,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -18,6 +23,9 @@ export class AuthService {
         token: this.jwtService.sign(payload),
       };
     }
-    throw new UnauthorizedException('Cheque suas credenciais');
+    throw new UnauthorizedException('Cheque suas credenciais', {
+      cause: new Error('Senha ou email incorretos'),
+      description: 'Cheque suas credenciais',
+    });
   }
 }
