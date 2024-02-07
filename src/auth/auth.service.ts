@@ -14,13 +14,18 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async singIn(email: string, password: string): Promise<{ token: string }> {
+  async singIn(
+    email: string,
+    password: string,
+  ): Promise<{ token: string; email: string; name: string }> {
     const user = await this.usersService.findforLogin(email);
     const passwordHashed = await bcrypt.compare(password, user.password);
     if (passwordHashed) {
-      const payload = { email: user.email, sub: user.id };
+      const payload = { email: user.email, sub: user.id, name: user.name };
       return {
         token: this.jwtService.sign(payload),
+        email: user.email,
+        name: user.name,
       };
     }
     throw new UnauthorizedException('Cheque suas credenciais', {
