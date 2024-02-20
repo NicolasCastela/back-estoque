@@ -1,10 +1,27 @@
+import { IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
+
 export class CreateProdutoDto {
-  id: number;
+  @IsString()
   nome: string;
+
+  @IsNumber()
+  @IsNotEmpty()
   quantidade: number;
+
+  @IsNumber()
+  @IsNotEmpty()
   valor: number;
+
+  @IsString()
   marca: string;
+
+  @IsString()
   categoria: string;
+
+  @IsNumber()
+  @IsNotEmpty()
   cod_prod: number;
+
+  @IsString()
   autor: string;
 }
