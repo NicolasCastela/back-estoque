@@ -18,14 +18,15 @@ model User {
 }
 
 model Produto {
-  id         Int      @id @default(autoincrement())
-  nome       String
-  quantidade Int
-  valor      Int
-  marca      String
-  categoria  String
-  cod_prod   Int      @unique
-  autor      String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now())
+  id                Int      @id @default(autoincrement())
+  nome              String
+  quantidade        Int
+  valor             Int
+  marca             String
+  categoria         String
+  cod_prod          Int      @unique
+  autor             String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @default(now())
+  quantidadeVendida Int      @default(0)
 }
