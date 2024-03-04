@@ -6,10 +6,6 @@ export class CreateProdutoDto {
 
   @IsNumber()
   @IsNotEmpty()
-  quantidade: number;
-
-  @IsNumber()
-  @IsNotEmpty()
   valor: number;
 
   @IsString()

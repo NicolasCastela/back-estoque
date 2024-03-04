@@ -41,9 +41,9 @@ export class EstoqueService {
     return updatedEstoque;
   }
 
-  async getWithIncludeEstoque(id: number) {
+  async getWithIncludeEstoque(cod_prod: number) {
     const produtoComEstoque = await this.prisma.produto.findUnique({
-      where: { id },
+      where: { cod_prod },
       include: {
         estoque: true,
       },

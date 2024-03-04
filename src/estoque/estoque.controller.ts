@@ -31,9 +31,11 @@ export class EstoqueController {
     return this.estoqueService.findOne(id);
   }
 
-  @Get(':id')
-  getWithIncludeEstoque(@Param('id', new ParseIntPipe()) id: number) {
-    return this.estoqueService.getWithIncludeEstoque(id);
+  @Get(':cod_prod')
+  getWithIncludeEstoque(
+    @Param('cod_prod', new ParseIntPipe()) cod_prod: number,
+  ) {
+    return this.estoqueService.getWithIncludeEstoque(cod_prod);
   }
 
   @Patch(':id/:value')

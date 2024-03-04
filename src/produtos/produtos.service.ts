@@ -9,6 +9,7 @@ export class ProdutosService {
   create(createProdutoDto: CreateProdutoDto) {
     return this.prisma.produto.create({
       data: createProdutoDto,
+      include: { estoque: true },
     });
   }
 
@@ -17,12 +18,14 @@ export class ProdutosService {
       orderBy: {
         createdAt: 'desc',
       },
+      include: { estoque: true },
     });
   }
 
-  findOne(id: number) {
+  findOne(cod_prod: number) {
     return this.prisma.produto.findUnique({
-      where: { id },
+      where: { cod_prod },
+      include: { estoque: true },
     });
   }
 
