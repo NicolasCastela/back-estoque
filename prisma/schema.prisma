@@ -18,15 +18,25 @@ model User {
 }
 
 model Produto {
-  id                Int      @id @default(autoincrement())
-  nome              String
-  quantidade        Int
-  valor             Int
-  marca             String
-  categoria         String
-  cod_prod          Int      @unique
-  autor             String
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @default(now())
-  quantidadeVendida Int      @default(0)
+  id        Int      @id @default(autoincrement())
+  nome      String
+  valor     Int
+  marca     String
+  categoria String
+  cod_prod  Int      @unique
+  autor     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  estoque   Estoque?
+
+  @@map("Produto")
+}
+
+model Estoque {
+  id         Int     @id @default(autoincrement())
+  produto    Produto @relation(fields: [prod_id], references: [id])
+  prod_id    Int     @unique
+  quantidade Int     @default(0)
+
+  @@map("Estoque")
 }
